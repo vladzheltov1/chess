@@ -14,16 +14,4 @@ export enum FigureBaseTypes {
 
 export type FigureColors = "white" | "black";
 
-/**
- * @deprecated
- * use FigureType instead
- */
-export type DefaultFigure = FigureContructorType<FigureBaseTypes, FigureColors>;
-
-/**
- * @deprecated
- * use FigureType instead
- */
-export type NullFigure = FigureContructorType<null, null>;
-
 export type FigureType = FigureContructorType<FigureBaseTypes | null, FigureColors | null>
