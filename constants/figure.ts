@@ -1,0 +1,1 @@
+export const FIGURE_AVATAR_PATH = "/figures/";
