@@ -1,8 +1,9 @@
 import { Figure } from "@/components/Figure";
 import { DEFAIULT_FIELD } from "@/constants/gameField";
-import { FigureColors } from "@/types/figure";
+import { DndContext, DragItem, DropArea } from "@/lib/DragAndDrop";
+import { FigureBaseColors, FigureColors } from "@/types/figure";
 import { GameFieldType } from "@/types/gameField";
-import { FC } from "react";
+import { FC, useState } from "react";
 import gameFieldStyles from "./GameField.module.scss";
 
 export interface IGameFieldProps {
@@ -11,16 +12,24 @@ export interface IGameFieldProps {
 }
 
 export const GameField: FC<IGameFieldProps> = (props) => {
-    const {fieldPlates = DEFAIULT_FIELD, playerColor = "white"} = props as IGameFieldProps;
+    const {fieldPlates = DEFAIULT_FIELD, playerColor = FigureBaseColors.white} = props as IGameFieldProps;
+
+    const [field, setField] = useState(fieldPlates);
     
-    const normalizedField = playerColor === "white" ? fieldPlates : fieldPlates.reverse();
+    const normalizedField = playerColor === FigureBaseColors.white ? field : field.reverse();
     return (
         <div className={gameFieldStyles.gameField}>
-            {normalizedField.map((item, index) => (
-                <div key={index} className={gameFieldStyles.gameBlock}>
-                    <Figure type={item.type} color={item.color} />
-                </div>
-            ))}
+            <DndContext field={field} setStateCallback={setField} >
+                {normalizedField.map((item, index) => (
+                    <DropArea key={index} droppableId={`tile-${index}`} className={gameFieldStyles.gameBlock} isDropDisabled={true}>
+                        {item.type && (
+                            <DragItem draggableId={`figure-${index}`} index={index}>
+                                <Figure type={item.type} color={item.color} />
+                            </DragItem>
+                        )}
+                    </DropArea>
+                ))}
+            </DndContext>
         </div>
     )
 }
