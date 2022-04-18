@@ -19,6 +19,7 @@
       "@/components/*": ["./components/*"],
       "@/constants/*": ["./constants/*"],
       "@/hooks/*": ["./hooks/*"],
+      "@/lib/*": ["./lib/*"],
       "@/styles/*": ["./styles/*"],
       "@/types/*": ["./types/*"],
       "@/utils/*": ["./utils/*"],
