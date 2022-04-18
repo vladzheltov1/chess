@@ -3,11 +3,14 @@ import { Dispatch, SetStateAction } from "react";
 import { DropResult } from "react-beautiful-dnd";
 
 export const onDragEnd = (result: DropResult, gameField: GameFieldType, setStateCallback: Dispatch<SetStateAction<GameFieldType>>): void => {
-    const data = reorderContainers(result, gameField);
+    const data = reorderFigures(result, gameField);
     setStateCallback(data);
 }
 
-const reorderContainers = (result: DropResult, gameField: GameFieldType) => {
+/**
+ * TODO: finish function
+ */
+const reorderFigures = (result: DropResult, gameField: GameFieldType) => {
     const { destination, source } = result;
 
     if (!destination) {

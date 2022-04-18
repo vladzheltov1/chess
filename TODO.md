@@ -1,1 +1,1 @@
-Придумать способ подгружить аватарку для пустой клетки
+- Доделать функцию в lib/DragAndDrop/utils/movement -> reorderFigures()
