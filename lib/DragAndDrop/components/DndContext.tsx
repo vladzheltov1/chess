@@ -8,7 +8,7 @@ import {
     OnDragStartResponder,
     OnDragUpdateResponder
 } from 'react-beautiful-dnd';
-import { onDragEnd } from '../utils/movement';
+import { onDragEnd } from '../utils/events';
 
 export interface IDndContext {
     onBeforeCapture?: OnBeforeCaptureResponder

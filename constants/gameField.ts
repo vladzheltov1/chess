@@ -76,3 +76,5 @@ export const DEFAIULT_FIELD: GameFieldType = [
     {type: FigureBaseTypes.knight, color: FigureBaseColors.white},
     {type: FigureBaseTypes.rook, color: FigureBaseColors.white},
 ];
+
+export const pawnStartingPositions = [9, 10, 11, 12, 13, 14, 15, 16, 17, 49, 50, 51, 52, 53, 54, 55, 56];

@@ -1,16 +1,9 @@
+import { NullFigure } from "@/constants/figure";
 import { GameFieldType } from "@/types/gameField";
-import { Dispatch, SetStateAction } from "react";
+import { getPossibleMovements } from "@/utils/movement";
 import { DropResult } from "react-beautiful-dnd";
 
-export const onDragEnd = (result: DropResult, gameField: GameFieldType, setStateCallback: Dispatch<SetStateAction<GameFieldType>>): void => {
-    const data = reorderFigures(result, gameField);
-    setStateCallback(data);
-}
-
-/**
- * TODO: finish function
- */
-const reorderFigures = (result: DropResult, gameField: GameFieldType) => {
+export const reorderFigures = (result: DropResult, gameField: GameFieldType) => {
     const { destination, source } = result;
 
     if (!destination) {
@@ -19,12 +12,17 @@ const reorderFigures = (result: DropResult, gameField: GameFieldType) => {
     
     const figure = gameField[source.index];
 
-    console.log(destination.index, source.index);
+    const sourceIndex = Number(source.droppableId);
+    const destinationIndex = Number(destination.droppableId);
 
-    // const droppableId = source.droppableId === gameField.droppableId ? source.droppableId : gameField.droppableId;
+    const possibleMovements = getPossibleMovements(gameField, sourceIndex);
 
-    // const [removed] = gameField[source.droppableId].splice(source.index, 1);
-    // gameField[droppableId].splice(gameField.index, 0, removed);
+    if(!possibleMovements.includes(destinationIndex)){
+        return [...gameField];
+    }
+
+    gameField[sourceIndex] = NullFigure;
+    gameField[destinationIndex] = figure;
 
     return [ ...gameField ];
 }

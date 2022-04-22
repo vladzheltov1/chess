@@ -21,7 +21,7 @@ export const GameField: FC<IGameFieldProps> = (props) => {
         <div className={gameFieldStyles.gameField}>
             <DndContext field={field} setStateCallback={setField} >
                 {normalizedField.map((item, index) => (
-                    <DropArea key={index} droppableId={`tile-${index}`} className={gameFieldStyles.gameBlock} isDropDisabled={true}>
+                    <DropArea key={index} droppableId={`${index}`} className={gameFieldStyles.gameBlock}>
                         {item.type && (
                             <DragItem draggableId={`figure-${index}`} index={index}>
                                 <Figure type={item.type} color={item.color} />
